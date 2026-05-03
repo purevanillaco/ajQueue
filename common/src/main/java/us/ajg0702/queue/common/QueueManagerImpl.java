@@ -39,8 +39,12 @@ public class QueueManagerImpl implements QueueManager {
         this.msgs = main.getMessages();
 
         int delay = main.getConfig().getBoolean("wait-to-load-servers") ? main.getConfig().getInt("wait-to-load-servers-delay") : 0;
+        if (delay > 0) {
+            main.getTaskManager().runLater(this::reloadServers, delay, TimeUnit.MILLISECONDS);
+        } else {
+            reloadServers();
+        }
 
-        main.getTaskManager().runLater(this::reloadServers, delay, TimeUnit.MILLISECONDS);
     }
 
     /**

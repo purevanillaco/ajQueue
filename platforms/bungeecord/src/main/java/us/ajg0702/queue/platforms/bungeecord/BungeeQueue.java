@@ -79,10 +79,6 @@ public class BungeeQueue extends Plugin implements Listener, Implementation {
         getProxy().getPluginManager().registerListener(this, this);
 
 
-        Metrics metrics = new Metrics(this, 7404);
-
-        metrics.addCustomChart(new SimplePie("premium", () -> String.valueOf(main.getLogic().isPremium())));
-        metrics.addCustomChart(new SimplePie("implementation", () -> main.getPlatformMethods().getImplementationName()));
     }
 
     private static BungeeAudiences adventure;
